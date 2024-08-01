@@ -15,12 +15,23 @@ pool:
 
 variables:
   buildConfiguration: 'Release'
-  name: environments
-  value: "A,B"
+
+stages:
+  - stage: build
+    displayName: "build .net configuration"
+    variables:
+      buildConfiguration: 'Release'
+      name: environments
+      value: "A,B"
+    jobs:
+      - job: A
+        steps:
+        - script: dotnet build --configuration $(buildConfiguration)
+        displayName: 'dotnet build $(buildConfiguration)'
 
 
-steps:
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+#steps:
+#- script: dotnet build --configuration $(buildConfiguration)
+#  displayName: 'dotnet build $(buildConfiguration)'
 
 

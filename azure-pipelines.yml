@@ -17,16 +17,23 @@ variables:
   buildConfiguration: 'Release'
 
 stages:
-  - stage: build
-    displayName: "build .net configuration"
+  - stage: "build A"
+    displayName: "build A .net configuration"
     variables:
-      buildConfiguration: 'Release'
+      buildConfiguration: 'Release A'
       name: environments
       value: "A,B"
     jobs:
       - job: A
         steps:
         - script: dotnet build --configuration $(buildConfiguration)
+        displayName: 'dotnet build $(buildConfiguration)'
+  - stage: build B
+    displayName: "build B .net confuguration"
+    jobs:
+      - job: B
+        steps:
+          - script: dotnet build --configuration $(buildConfiguration)
         displayName: 'dotnet build $(buildConfiguration)'
 
 

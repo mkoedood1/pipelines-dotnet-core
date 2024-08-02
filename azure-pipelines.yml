@@ -20,6 +20,8 @@ stages:
     displayName: "build A .net configuration"   
     jobs:
       - deployment: A
+        variables:
+          buildConfiguration: 'Release'
         environment: Env-A
         strategy:
          runOnce:

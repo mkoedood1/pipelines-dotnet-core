@@ -10,9 +10,6 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-#variables:
-#  buildConfiguration: 'Release'
-
 variables:
   buildConfiguration: 'Release'
   name: environments
@@ -20,9 +17,7 @@ variables:
 
 stages:
   - stage: A
-    displayName: "build A .net configuration"
-#    variables:
-#      buildConfiguration: 'Release'
+    displayName: "build A .net configuration"   
     jobs:
       - job: A
         steps:
@@ -37,8 +32,6 @@ stages:
         displayName: 'dotnet build B $(buildConfiguration)'
 
 
-#steps:
-#- script: dotnet build --configuration $(buildConfiguration)
-#  displayName: 'dotnet build $(buildConfiguration)'
+
 
 

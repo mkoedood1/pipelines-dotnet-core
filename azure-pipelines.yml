@@ -30,7 +30,7 @@ stages:
                azureSubscription: 'Visual Studio Enterprise-abonnement – MPN(15155078-e60c-450f-b805-f13f58264590)'
                scriptType: 'pscore'
                scriptLocation: 'inlineScript'
-               inlineScript: 'az vm start -g ipaas-t-we-rg integration-vm-01'
+               inlineScript: 'az vm start -g ipaas-t-we-rg -n integration-vm-01'
            - script: echo hello A
              displayName: 'stage A build A $(buildConfiguration)'
   - stage: B

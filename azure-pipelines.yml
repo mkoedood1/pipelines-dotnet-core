@@ -28,7 +28,7 @@ stages:
     jobs:
       - job: B
         steps:
-          - script: dotnet build --configuration $(buildConfiguration)
+          - script: echo HI B!
         displayName: 'dotnet build B $(buildConfiguration)'
 
 

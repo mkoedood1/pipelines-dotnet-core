@@ -26,7 +26,7 @@ stages:
           deploy:
            steps:
            - script: dotnet build --configuration $(buildConfiguration)
-        displayName: 'dotnet build A $(buildConfiguration)'
+             displayName: 'dotnet build A $(buildConfiguration)'
   - stage: B
     displayName: "build B .net confuguration"
     jobs:
@@ -37,7 +37,7 @@ stages:
           deploy:
            steps:
            - script: dotnet build --configuration $(buildConfiguration)
-        displayName: 'dotnet build B $(buildConfiguration)'
+             displayName: 'dotnet build B $(buildConfiguration)'
 
 
 

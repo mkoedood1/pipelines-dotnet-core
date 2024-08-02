@@ -25,7 +25,7 @@ stages:
          runOnce:
           deploy:
            steps:
-           - bash: stage-a test
+           - script: dotnet build --configuration $(buildConfiguration)
              displayName: 'stage A build A $(buildConfiguration)'
   - stage: B
     displayName: "build B .net confuguration"

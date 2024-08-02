@@ -19,38 +19,14 @@ stages:
   - stage: A
     displayName: "build A .net configuration"   
     jobs:
-      - deployment: A
-        environment: Env-A
-        strategy:
-         runOnce:
-          deploy:
-           steps:
-           - task: AzureCLI@2
-             inputs:
-               azureSubscription: 'Visual Studio Enterprise-abonnement – MPN(15155078-e60c-450f-b805-f13f58264590)'
-               scriptType: 'pscore'
-               scriptLocation: 'inlineScript'
-               inlineScript: 'az vm start -g ipaas-t-we-rg -n integration-vm-01'
-           - script: echo hello A - start VM
-             displayName: 'stage A build A $(buildConfiguration)'
+      - job: A
+        steps:
+        - script: dotnet build --configuration $(buildConfiguration)
+        displayName: 'dotnet build A $(buildConfiguration)'
   - stage: B
     displayName: "build B .net confuguration"
     jobs:
-      - deployment: B
-        environment: Env-B
-        strategy:
-         runOnce:
-          deploy:
-           steps:
-           - task: AzureCLI@2
-             inputs:
-               azureSubscription: 'Visual Studio Enterprise-abonnement – MPN(15155078-e60c-450f-b805-f13f58264590)'
-               scriptType: 'pscore'
-               scriptLocation: 'inlineScript'
-               inlineScript: 'az vm stop -g ipaas-t-we-rg -n integration-vm-01'
-           - script: echo hello B - stop VM
-             displayName: 'dotnet build B $(buildConfiguration)'
-
-
-
-
+      - job: B
+        steps:
+          - script: dotnet build --configuration $(buildConfiguration)
+        displayName: 'dotnet build B $(buildConfiguration)'

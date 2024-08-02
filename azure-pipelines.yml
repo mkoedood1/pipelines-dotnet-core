@@ -20,15 +20,13 @@ stages:
     displayName: "build A .net configuration"   
     jobs:
       - deployment: A
-        variables:
-          buildConfiguration: 'Release'
         environment: Env-A
         strategy:
          runOnce:
           deploy:
            steps:
-           - script: dotnet build --configuration $(buildConfiguration)
-             displayName: 'dotnet build A $(buildConfiguration)'
+           - bash: stage-a test
+             displayName: 'stage A build A $(buildConfiguration)'
   - stage: B
     displayName: "build B .net confuguration"
     jobs:

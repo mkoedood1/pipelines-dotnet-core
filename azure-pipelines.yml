@@ -19,16 +19,24 @@ stages:
   - stage: A
     displayName: "build A .net configuration"   
     jobs:
-      - job: A
-        steps:
-        - script: dotnet build --configuration $(buildConfiguration)
+      - deployment: A
+        environment: Env-A
+        strategy:
+         runOnce:
+          deploy:
+           steps:
+           - script: dotnet build --configuration $(buildConfiguration)
         displayName: 'dotnet build A $(buildConfiguration)'
   - stage: B
     displayName: "build B .net confuguration"
     jobs:
-      - job: B
-        steps:
-          - script: dotnet build --configuration $(buildConfiguration)
+      - deployment: B
+        environment: Env-B
+        strategy:
+         runOnce:
+          deploy:
+           steps:
+           - script: dotnet build --configuration $(buildConfiguration)
         displayName: 'dotnet build B $(buildConfiguration)'
 
 
